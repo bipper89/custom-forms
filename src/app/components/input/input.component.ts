@@ -10,21 +10,18 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule],
-  template: `
-    <mat-form-field appearance="outline">
-      <mat-label>{{ label }}</mat-label>
-      <input
-        matInput
-        [placeholder]="placeholder"
-        [type]="type"
-        [ngModel]="value"
-        [disabled]="isDisabled"
-        (ngModelChange)="onChange($event)"
-      />
-    </mat-form-field>
-  `,
-  styles: `mat-form-field {width: 100%;}`,
+  imports: [FormsModule, MatFormFieldModule, MatInputModule],
+  template: ` <mat-form-field appearance="outline">
+    <mat-label>{{ label }}</mat-label>
+    <input
+      [ngModel]="value"
+      [disabled]="isDisabled"
+      (ngModelChange)="onChange($event)"
+      matInput
+      [placeholder]="placeholder"
+      [type]="type"
+    />
+  </mat-form-field>`,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -32,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
       multi: true,
     },
   ],
+  styles: `mat-form-field {width: 100%;}`,
 })
 export class InputComponent implements ControlValueAccessor {
   @Input() label = '';
@@ -48,12 +46,15 @@ export class InputComponent implements ControlValueAccessor {
       this.value = obj;
     }
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouch = fn;
   }
+
   setDisabledState?(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
   }

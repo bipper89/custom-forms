@@ -7,19 +7,19 @@
       <mat-card-content>
         <app-input
           formControlName="user"
-          label="User"
           placeholder="Introduce tu usuario"
+          label="Usuario"
         />
         <app-input
           formControlName="password"
-          label="Password"
           placeholder="Introduce tu password"
+          label="Password"
           type="password"
         />
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button type="submit">Login</button>
-        <button mat-button>Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Login</button>
+        <button mat-raised-button color="warn">Cancel</button>
       </mat-card-actions>
     </form>
   </mat-card>
